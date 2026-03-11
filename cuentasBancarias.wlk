@@ -33,3 +33,30 @@ object cuentaGastos{
         return saldo
     }
 }
+
+// #3
+
+object cuentaCombi{
+    var primaria= cuentaCorriente 
+    var costoOperacion = 50
+    var saldoSecundaria= cuentaGastos
+    var saldoTotal = primaria+ saldoSecundaria
+
+    method depositar(valor){
+        primaria.depositar(valor)
+    }
+
+    method extraer(valor){
+        if (primaria.saldo() >= valor){
+            primaria.depositar(valor)
+        }
+        else {
+            saldoSecundaria.extraer(valor)
+        }
+    }
+
+    method chequeoPrimaria(valor){
+        return primaria.saldo()
+    }
+
+}
